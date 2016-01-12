@@ -191,5 +191,5 @@ landmark = sortrows(landmark, -2); % Y sorting (decrease order)
         text(landmark_identified{name, 1}, landmark_identified{name, 2}, landmark_identified{name, 3}, name); pause(0.5); drawnow;
     landmark(1:2, :) = []; % delete identified landmark (now size(landmark) = NaN)
 
-% save table format
+% save landmark information as matlab table format
 save('face_W_landmark.mat', 'landmark');
