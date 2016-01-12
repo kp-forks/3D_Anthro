@@ -42,29 +42,10 @@ f = figure(1);
 %% table generation
 temp = zeros(size(landmark));
 landmark_identified = table(temp(:, 1), temp(:, 2), temp(:, 3));
-    variables = {'x'  'y'  'z'};
-    rows = {'glabella'
-         'sellion'
-         'rhinion'
-         'dacryon L'
-         'dacryon R'
-         'alare L'
-         'alare R'
-         'pronasale'
-         'nasal ala L'
-         'nasal ala R'
-         'subnasale'
-         'zygion L'
-         'zygion R'
-         'tragion L'
-         'tragion R'
-         'cheilion L'
-         'cheilion R'
-         'supramentale'
-         'promentale'
-         'menton'};
-    landmark_identified.Properties.VariableNames = variables;
-    landmark_identified.Properties.RowNames = rows;
+    Variables
+    Rowa
+    landmark_identified.Properties.VariableNames = {'x'  'y'  'z'};
+    landmark_identified.Properties.RowNames = ...
         
      
 %% landmark identification
