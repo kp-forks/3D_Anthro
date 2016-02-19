@@ -1,7 +1,6 @@
 function [ListVertex, ListFace, ListFace_backup, HEADER] = function_loading_ply_file(filename)
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % Matlab Tutorial for 3D Anthropometry
-    % modified from Tutorial #1. Load PLY file
     %
     % Wonsup Lee
     % 07 Sep 2015

@@ -1,7 +1,6 @@
 function function_saving_ply_file(ListVertex, ListFace_backup, HEADER, filename_save)
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % Matlab Tutorial for 3D Anthropometry
-    % modified from Tutorial #1. Load PLY file
     %
     % Wonsup Lee
     % 17 Sep 2015
