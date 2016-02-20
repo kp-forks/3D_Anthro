@@ -1,11 +1,12 @@
-function landmark = function_landmark_identification(ListFace, ListVertex, landmark, filename_save, visualization)
+function landmark_identified = function_landmark_identification(ListFace, ListVertex, landmark, filename_save, visualization)
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % Matlab Tutorial for 3D Anthropometry
     %
     % Wonsup Lee
     % 19 Feb 2016
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % NOTE: this code is illustrated for a face measurement with 20 specified landmarks
+    % NOTE: This code is illustrated for a face measurement with 20 specified landmarks
+    % A customized algorithm is required for a different landmark set
     
     %% visualization of 3D face
     if visualization == 1
@@ -201,28 +202,28 @@ function landmark = function_landmark_identification(ListFace, ListVertex, landm
         landmark(1:2, :) = []; % delete identified landmark (now size(landmark) = [2, 3])
 
         name = 'alare R';
-        landmark_identified{name, :} = temp(temp(:, 1) == min(temp(:, 1)), :); % if X value of temp is the smallest, the landmark is right dacryon
+        landmark_identified{name, :} = temp(temp(:, 1) == min(temp(:, 1)), :); % if X value of temp is the smallest, the landmark is right alare
             if visualization == 1
                 text(landmark_identified{name, 1}, landmark_identified{name, 2}, landmark_identified{name, 3}, name); pause(0.5); drawnow;
             end
         name = 'alare L';
-        landmark_identified{name, :} = temp(temp(:, 1) == max(temp(:, 1)), :); % if X value of temp is the greatest, the landmark is right dacryon
+        landmark_identified{name, :} = temp(temp(:, 1) == max(temp(:, 1)), :); % if X value of temp is the greatest, the landmark is left alare
             if visualization == 1
                 text(landmark_identified{name, 1}, landmark_identified{name, 2}, landmark_identified{name, 3}, name); pause(0.5); drawnow;
             end
 
-    % step 14. nose ala landmarks    
-        name = 'nosal ala R';
-        landmark_identified{name, :} = landmark(landmark(:, 1) == min(landmark(:, 1)), :); % if X value of temp is the smallest, the landmark is right dacryon
+    % step 14. nasal ala landmarks    
+        name = 'nasal ala R';
+        landmark_identified{name, :} = landmark(landmark(:, 1) == min(landmark(:, 1)), :); % if X value of temp is the smallest, the landmark is right nasal ala
             if visualization == 1
                 text(landmark_identified{name, 1}, landmark_identified{name, 2}, landmark_identified{name, 3}, name); pause(0.5); drawnow;
             end
-        name = 'nosal ala L';
-        landmark_identified{name, :} = landmark(landmark(:, 1) == max(landmark(:, 1)), :); % if X value of temp is the greatest, the landmark is right dacryon
+        name = 'nasal ala L';
+        landmark_identified{name, :} = landmark(landmark(:, 1) == max(landmark(:, 1)), :); % if X value of temp is the greatest, the landmark is left nasal ala
         landmark(1:2, :) = []; % delete identified landmark (now size(landmark) = NaN)
             if visualization == 1
                 text(landmark_identified{name, 1}, landmark_identified{name, 2}, landmark_identified{name, 3}, name); pause(0.5); drawnow;
             end
 
     %% save landmark information as matlab table format
-    save(filename_save, 'landmark');
+    save(filename_save, 'landmark_identified');

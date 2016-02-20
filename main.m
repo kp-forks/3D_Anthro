@@ -25,4 +25,16 @@ visualization = 0; % 1 = Yes || 0 = No
 landmark = function_landmark_identification(ListFace, ListVertex, landmark, filename_save, visualization);
 
 
-%%
+%% alignment
+% The face will be aligned two landmarks (sellion(2) & supramentale(18))
+
+
+%% facial measurement
+
+% length dimensions (Euclidean distance)
+subject_name = 'S1';
+visualization = 0; % 1 = Yes || 0 = No
+measurements = function_measurement(ListFace, ListVertex, landmark, subject_name, visualization);
+
+
+% arc, circumference dimensions
