@@ -1,4 +1,4 @@
-function landmark_identified = function_landmark_identification(ListFace, ListVertex, landmark, filename_save, visualization)
+function landmark_identified = function_landmark_identification(ListFace, ListVertex, landmark, visualization)
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % Matlab Tutorial for 3D Anthropometry
     %
@@ -224,6 +224,3 @@ function landmark_identified = function_landmark_identification(ListFace, ListVe
             if visualization == 1
                 text(landmark_identified{name, 1}, landmark_identified{name, 2}, landmark_identified{name, 3}, name); pause(0.5); drawnow;
             end
-
-    %% save landmark information as matlab table format
-    save(filename_save, 'landmark_identified');

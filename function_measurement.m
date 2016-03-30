@@ -5,7 +5,7 @@ function measurements = function_measurement(ListFace, ListVertex, landmark, sub
     % Wonsup Lee
     % 20 Feb 2016
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % NOTE: This code is illustrated for a few facial measurement.
+    % NOTE: This code is illustrated for some facial measurement.
     
     %% visualization of 3D face
     if visualization == 1
