@@ -66,4 +66,9 @@ measurements = function_measurement(ListFace, ListVertex, landmark, subject_name
 %%% [ADD] add more dimensions to measure in function_measurement %%%
 
 
+%%% [ADD]
 % arc, circumference dimensions
+% template registration
+% symmetrization
+% normal vector
+% edge vector
