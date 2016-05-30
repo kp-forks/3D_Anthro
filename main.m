@@ -72,3 +72,8 @@ measurements = function_measurement(ListFace, ListVertex, landmark, subject_name
 % symmetrization
 % normal vector
 % edge vector
+% curvature
+% shortest path
+% trisurf
+% regio growing
+% outlier filtering
