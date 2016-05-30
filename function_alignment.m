@@ -1,9 +1,9 @@
-function [ListVertex, landmark] = function_alignment(source, ListFace, ListVertex, landmark, visualization)
+function [ListVertex, landmark] = function_alignment(reference, origin, ListFace, ListVertex, landmark, visualization)
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % Matlab Tutorial for 3D Anthropometry
     %
     % Wonsup Lee
-    % 30 Mar 2016
+    % 30 May 2016
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % NOTE: This code is illustrated for some facial measurement.
     
@@ -35,27 +35,28 @@ function [ListVertex, landmark] = function_alignment(source, ListFace, ListVerte
     VectorAxis = [1, 0];
     
     landmark_array = table2array(landmark);
+    origin = table2array(origin);
     
-    if source.point1(2) < source.point2(2)
-        temp = source.point1;
-        source.point1 = source.point2;
-        source.point2 = temp;
+    if reference.point1(2) < reference.point2(2)
+        temp = reference.point1;
+        reference.point1 = reference.point2;
+        reference.point2 = temp;
     end
     
-    if source.point4(1) < source.point3(1)
-        temp = source.point3;
-        source.point3 = source.point4;
-        source.point4 = temp;
+    if reference.point4(1) < reference.point3(1)
+        temp = reference.point3;
+        reference.point3 = reference.point4;
+        reference.point4 = temp;
     end
     
     % rotate X axis
-    VectorK = [source.point1(2) - source.point2(2), source.point1(3) - source.point2(3)];
+    VectorK = [reference.point1(2) - reference.point2(2), reference.point1(3) - reference.point2(3)];
     rotAngle = acosd(dot(VectorK, VectorAxis) / (norm(VectorK) * norm(VectorAxis)));
     if rotAngle > 90
         rotAngle = 180 - rotAngle;
     end
     rotAngle = rotAngle/180*pi;
-    if source.point1(3) > source.point2(3)
+    if reference.point1(3) > reference.point2(3)
         R = function_rotationmat3D(-rotAngle, [1, 0, 0]);
     else
         R = function_rotationmat3D(rotAngle, [1, 0, 0]);
@@ -63,20 +64,20 @@ function [ListVertex, landmark] = function_alignment(source, ListFace, ListVerte
 
     ListVertex     = function_rotation_matrix(ListVertex, R);
     landmark_array = function_rotation_matrix(landmark_array, R);
-    source.point1  = function_rotation_matrix(source.point1, R);
-    source.point2  = function_rotation_matrix(source.point2, R);
-    source.point3  = function_rotation_matrix(source.point3, R);
-    source.point4  = function_rotation_matrix(source.point4, R);
+    reference.point1  = function_rotation_matrix(reference.point1, R);
+    reference.point2  = function_rotation_matrix(reference.point2, R);
+    reference.point3  = function_rotation_matrix(reference.point3, R);
+    reference.point4  = function_rotation_matrix(reference.point4, R);
     
     
     % rotate Z axis
-    VectorK = [source.point1(2) - source.point2(2), source.point1(1) - source.point2(1)];
+    VectorK = [reference.point1(2) - reference.point2(2), reference.point1(1) - reference.point2(1)];
     rotAngle = acosd(dot(VectorK, VectorAxis) / (norm(VectorK) * norm(VectorAxis)));
     if rotAngle > 90
         rotAngle = 180 - rotAngle;
     end
     rotAngle = rotAngle/180*pi;
-    if source.point1(1) < source.point2(1)
+    if reference.point1(1) < reference.point2(1)
         R = function_rotationmat3D(-rotAngle, [0, 0, 1]);
     else
         R = function_rotationmat3D(rotAngle, [0, 0, 1]);
@@ -84,20 +85,20 @@ function [ListVertex, landmark] = function_alignment(source, ListFace, ListVerte
 
     ListVertex     = function_rotation_matrix(ListVertex, R);
     landmark_array = function_rotation_matrix(landmark_array, R);
-    source.point1  = function_rotation_matrix(source.point1, R);
-    source.point2  = function_rotation_matrix(source.point2, R);
-    source.point3  = function_rotation_matrix(source.point3, R);
-    source.point4  = function_rotation_matrix(source.point4, R);
+    reference.point1  = function_rotation_matrix(reference.point1, R);
+    reference.point2  = function_rotation_matrix(reference.point2, R);
+    reference.point3  = function_rotation_matrix(reference.point3, R);
+    reference.point4  = function_rotation_matrix(reference.point4, R);
     
     
     % rotate Y axis
-    VectorK = [source.point3(1) - source.point4(1), source.point3(3) - source.point4(3)];
+    VectorK = [reference.point3(1) - reference.point4(1), reference.point3(3) - reference.point4(3)];
     rotAngle = acosd(dot(VectorK, VectorAxis) / (norm(VectorK) * norm(VectorAxis)));
     if rotAngle > 90
         rotAngle = 180 - rotAngle;
     end
     rotAngle = rotAngle/180*pi;
-    if source.point3(3) > source.point4(3)
+    if reference.point3(3) > reference.point4(3)
         R = function_rotationmat3D(-rotAngle, [0, 1, 0]);
     else
         R = function_rotationmat3D(rotAngle, [0, 1, 0]);
@@ -105,11 +106,16 @@ function [ListVertex, landmark] = function_alignment(source, ListFace, ListVerte
 
     ListVertex     = function_rotation_matrix(ListVertex, R);
     landmark_array = function_rotation_matrix(landmark_array, R);
-    source.point1  = function_rotation_matrix(source.point1, R);
-    source.point2  = function_rotation_matrix(source.point2, R);
-    source.point3  = function_rotation_matrix(source.point3, R);
-    source.point4  = function_rotation_matrix(source.point4, R);
+    reference.point1  = function_rotation_matrix(reference.point1, R);
+    reference.point2  = function_rotation_matrix(reference.point2, R);
+    reference.point3  = function_rotation_matrix(reference.point3, R);
+    reference.point4  = function_rotation_matrix(reference.point4, R);
     
     
     landmark_array(:, :) = roundn(landmark_array(:, :), -5);
+    
+    % change origin point
+    landmark_array = landmark_array - repmat(origin, size(landmark_array, 1), 1);
+    ListVertex = ListVertex - repmat(origin, size(ListVertex, 1), 1);
+    
     landmark{:, :} = landmark_array(:, :);
