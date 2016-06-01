@@ -1,5 +1,4 @@
-# 3D_Anthro (https://github.com/LeeLAMB/3D_Anthro)
-Matlab Codes & Tutorials for 3D Anthropometric Analysis
+# Matlab Codes & Tutorials for 3D Anthropometric Analysis
 
 I have prepared useful Matlab algorithms in order to be used in 3D Anthropometry and size/shape analysis for 3D body scan images. I will keep updating my codes as an open source algorithm.
 
