@@ -18,5 +18,5 @@ Contents
 
 
 01 June 2016
-Wonsup Lee, PhD
-w.lee@tudelft.nl
+
+Wonsup Lee, PhD (w.lee@tudelft.nl)
