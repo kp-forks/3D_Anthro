@@ -10,15 +10,20 @@ close all; % close all figures
 
 %% settings
 save_outputs = 0;
-    % 0: unsave outputs
-    % 1: save outputs
+    % 0: outputs will NOT be saved in files
+    % 1: outputs will be saved
+if save_outpus == 1
+    mkdir('output');
+end
     
-%% data loading
+%% data loading for one subject
 dir = 'source 3D images';
 filename = 'face_W.ply';
 filename_3D_scan = fullfile(dir, filename);
 [ListVertex, ListFace, ListFace_backup, HEADER] = function_loading_ply_file(filename_3D_scan);
 
+% Landmarks should be already marked on the 3D image using 3D scan software.
+% If data format is different than my example, the following code should be modified.
 filename = 'face_W_landmark.asc';
 filename_landmark = fullfile(dir, filename);
 landmark = textread(filename_landmark, '');
@@ -63,7 +68,7 @@ visualization = 1;
     % 0 = No
     % 1 = Yes
 measurements = function_measurement(ListFace, ListVertex, landmark, subject_name, visualization);
-%%% [ADD] add more dimensions to measure in function_measurement %%%
+%%% [ADD] add more facial dimensions to measure in function_measurement %%%
 
 
 %%% [ADD]
@@ -74,6 +79,7 @@ measurements = function_measurement(ListFace, ListVertex, landmark, subject_name
 % edge vector
 % curvature
 % shortest path
+% landmarking
 % trisurf
 % regio growing
 % outlier filtering
