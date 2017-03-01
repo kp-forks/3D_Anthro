@@ -1,4 +1,4 @@
-# Matlab Codes & Tutorials for 3D Anthropometric Analysis
+# Matlab Codes for 3D Anthropometric Analysis & Digital Human Modeling
 
 I have prepared useful Matlab algorithms in order to be used in 3D Anthropometry and size/shape analysis for 3D body scan images. I will keep updating my codes as an open source algorithm.
 
@@ -17,6 +17,6 @@ Contents
 - etc.
 
 
-01 June 2016
+01 Mar 2017
 
 Wonsup Lee, PhD (w.lee@tudelft.nl)
