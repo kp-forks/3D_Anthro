@@ -6,7 +6,6 @@ function function_saving_ply_file(ListVertex, ListFace_backup, HEADER, filename_
     % 17 Sep 2015
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % NOTE: This code may not work if PLY has different structure of header
-    
     %% save PLY file
     fid = fopen(filename_save, 'w');
         for i = 1:size(HEADER, 1)

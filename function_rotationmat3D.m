@@ -1,20 +1,22 @@
-function R = function_rotationmat3D(r,Axis)
-
+function R= rotationmat3D(r,Axis)
+%function R= rotationmat3D(radians,Axis)
+%
 % creates a rotation matrix such that R * x 
-% operates on x by rotating x around the origin r (radians) around line
+% operates on x by rotating x around the origin r radians around line
 % connecting the origin to the point "Axis"
 %
-% example 1:
+% example:
 % rotate around a random direction a random amount and then back
 % the result should be an Identity matrix
-% r = rand(4,1);
-% rotationmat3D(r(1),[r(2),r(3),r(4)]) * rotationmat3D(-r(1),[r(2),r(3),r(4)])
 %
-% example 2: 
+%r = rand(4,1);
+%rotationmat3D(r(1),[r(2),r(3),r(4)]) * rotationmat3D(-r(1),[r(2),r(3),r(4)])
+%
+% example2: 
 % rotate around z axis 45 degrees
 % Rtest = rotationmat3D(pi/4,[0 0 1])
 %
-% Bileschi 2009
+%Bileschi 2009
 
 if nargin == 1
    if(length(rotX) == 3)
