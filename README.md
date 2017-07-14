@@ -4,10 +4,11 @@ I have prepared useful Matlab algorithms in order to be used in 3D Anthropometry
 
 Contents
 - Loading/Saving 3D scan image file (.PLY format)
-- Loading/Saving anthropometric landmark data
+- Loading/Saving anthropometric landmark data (.ASC or IGES format)
 - Landmark identification
 - Alignment of 3D image with the Cartesian coordinate system
 - Measurement of length, width, circumference, and curvature dimensions (under updating)
+- Body surface curvature analysis
 - Virtual fit analysis (not provided yet)
 - Template registration (not provided yet)
 - Symmetrization (not provided yet)
@@ -17,6 +18,6 @@ Contents
 - etc.
 
 
-01 Mar 2017
+14 July 2017
 
-Wonsup Lee, PhD (w.lee@tudelft.nl)
+Wonsup Lee, PhD (mcury83@gmail.com)
