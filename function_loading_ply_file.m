@@ -57,3 +57,7 @@ function [ListVertex, ListFace, ListFace_backup, HEADER] = function_loading_ply_
             ListFace(:, 1) = []; % delete the first column
             ListFace(:, :) = ListFace(:, :) + 1;
     fclose(fid); % opened file should be closed
+    
+    if size(ListVertex, 2) > 3
+        fprintf('WARNING: Size of vertex matrix = %d. Texture data may be included in the vertex matrix.\n', size(ListVertex, 2));
+    end

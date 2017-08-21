@@ -1,4 +1,4 @@
-function R= rotationmat3D(r,Axis)
+function R= function_rotationmat3D(r,Axis)
 %function R= rotationmat3D(radians,Axis)
 %
 % creates a rotation matrix such that R * x 

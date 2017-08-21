@@ -91,7 +91,7 @@ function [new_points] = bbw_simple_deform(varargin)
   hold off;
   
   g_Deform(gid).new_C = [get(C_plot,'XData')' get(C_plot,'YData')' get(C_plot, 'ZData')'];
-  for i = 1:size(D, 1);
+  for i = 1:size(D, 1)
       g_Deform(gid).new_C(i,1) = g_Deform(gid).new_C(i,1)+D(i, 1);
       g_Deform(gid).new_C(i,2) = g_Deform(gid).new_C(i,2)+D(i ,2);
       g_Deform(gid).new_C(i,3) = g_Deform(gid).new_C(i,3)+D(i, 3);

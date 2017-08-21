@@ -15,7 +15,7 @@ else
     Prealligned_target=target;
 end
 
-display ('error')
+% disp('error')
 errortemp(1,:)=0;
 index=2;
 [errortemp(index,:),Reallignedsourcetemp] = ICP_manu_allign2(Prealligned_target,Prealligned_source,Indices_edgesS,Indices_edgesT);

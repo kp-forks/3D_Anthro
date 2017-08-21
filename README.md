@@ -4,17 +4,19 @@ I have prepared useful Matlab algorithms in order to be used in 3D Anthropometry
 
 Contents
 - Loading/Saving 3D scan image file (.PLY format)
-- Loading/Saving anthropometric landmark data (.ASC or IGES format)
+- Loading anthropometric landmark data (.ASC or .IGS format)
 - Landmark identification
-- Alignment of 3D image with the Cartesian coordinate system
+- Alignment of 3D image with the Cartesian coordinate system based on landmarks
 - Measurement of length, width, circumference, and curvature dimensions (under updating)
 - Body surface curvature analysis
 - Virtual fit analysis (not provided yet)
-- Template registration (not provided yet)
+- Template registration using ICP algorithm
+- Deformation/morphing using BBW algorithm
 - Symmetrization (not provided yet)
 - Surface Parameterization / Mesh Flattening (not provided yet)
-- Morphing / Posture change (not provided yet)
+- Posture change (not provided yet)
 - Sizing / Clustering (not provided yet)
+- Finite element anlaysis (not provided yet)
 - etc.
 
 
