@@ -1,5 +1,14 @@
 function pathxyz = function_shortest_path(point1, point2, V, sparsematrix, method)
     % find index of point1 and point2
+    if size(V, 2) > 3
+        V(:, 4:end) = [];
+    end
+    ptCloudVertex = pointCloud(V);
+    [index, dump] = findNearestNeighbors(ptCloudVertex, point1, 1);
+    point1 = V(index, :);
+    [index, dump] = findNearestNeighbors(ptCloudVertex, point2, 1);
+    point2 = V(index, :);
+    
     point1Index = find(V(:, 1) == point1(1));
         if size(point1Index, 1) > 1
             temp99 = V(point1Index, :);

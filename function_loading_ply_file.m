@@ -59,5 +59,5 @@ function [ListVertex, ListFace, ListFace_backup, HEADER] = function_loading_ply_
     fclose(fid); % opened file should be closed
     
     if size(ListVertex, 2) > 3
-        fprintf('WARNING: Size of vertex matrix = %d. Texture data may be included in the vertex matrix.\n', size(ListVertex, 2));
+        fprintf('WARNING: Number of columns of the Vertex matrix = %d. Texture data may be included in the vertex matrix.\n', size(ListVertex, 2));
     end

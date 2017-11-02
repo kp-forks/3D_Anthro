@@ -6,8 +6,17 @@ function curve = function_searching_shortest_path(V, F, points, loop, simplified
     % simplified: 0, not slimplified
     %             1, simplified with interval
     
+    % interval: defined as percentage (recommendation: 5 or 10)
+    %           interval 5% means that points (which will create a spline
+    %           curve) will be found every fifth percent location. For
+    %           example, if the original shortest path includes 100 points,
+    %           then the 1st, 5th, 10th, 15th, 20th, ... 95th, and the last
+    %           points will be used for the curvature simplification. if
+    %           the interval is too low or too high, the simplified
+    %           curvature will look quite awkward.
+    
     % smooth: 0, don't smoothing after slimplified
-    %         1, smoothing after slimplified
+    %         1, smoothing after slimplified by applying 'fnplt' function
 
     vertexPairList = [F(:, 1:2); F(:, 2:3); F(:, 1:2:3)];
     vertexPairList = unique(vertexPairList, 'rows', 'stable');
@@ -64,4 +73,8 @@ function curve = function_searching_shortest_path(V, F, points, loop, simplified
         end
     else
         error('SIMPLIFIED shoould be 0 or 1');
+    end
+    
+    if curve(1, 1) == 0 && curve(1, 2) == 0 && curve(1, 3) == 0
+        curve(1, :) = [];
     end
