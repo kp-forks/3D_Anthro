@@ -1,0 +1,35 @@
+Multi-image Stereo - 4.0.4.5 - 160715
+Command line as invoked:
+  P:\app\bin\MStereo.exe -l P:/data/180225_SJ/Static/Static.000068.log -f P:/data/180225_SJ/Static/Static.000068.geo.ini -f P:/app/cfg/mstereo_default.ini -f P:/data/180225_SJ/Static/Static.000068.tex.ini -o P:/data/180225_SJ/Static/Static.000068.obj
+
+Command line as of now:
+  P:\app\bin\MStereo.exe -l P:/data/180225_SJ/Static/Static.000068.log -f P:/data/180225_SJ/Static/Static.000068.geo.ini -f P:/app/cfg/mstereo_default.ini -f P:/data/180225_SJ/Static/Static.000068.tex.ini -o P:/data/180225_SJ/Static/Static.000068.obj 
+
+Command line options after -f substitution:
+  P:\app\bin\MStereo.exe -l P:/data/180225_SJ/Static/Static.000068.log -f P:/data/180225_SJ/Static/Static.000068.geo.ini -ignoremissing -growthreads -1 -g P:/data/180225_SJ/Static/000068/Static.000068.01_A.bmp P:/calibrations/20180225024143574/01_A.tka -g P:/data/180225_SJ/Static/000068/Static.000068.01_B.bmp P:/calibrations/20180225024143574/01_B.tka -g P:/data/180225_SJ/Static/000068/Static.000068.02_A.bmp P:/calibrations/20180225024143574/02_A.tka -g P:/data/180225_SJ/Static/000068/Static.000068.02_B.bmp P:/calibrations/20180225024143574/02_B.tka -g P:/data/180225_SJ/Static/000068/Static.000068.03_A.bmp P:/calibrations/20180225024143574/03_A.tka -g P:/data/180225_SJ/Static/000068/Static.000068.03_B.bmp P:/calibrations/20180225024143574/03_B.tka -g P:/data/180225_SJ/Static/000068/Static.000068.04_A.bmp P:/calibrations/20180225024143574/04_A.tka -g P:/data/180225_SJ/Static/000068/Static.000068.04_B.bmp P:/calibrations/20180225024143574/04_B.tka -g P:/data/180225_SJ/Static/000068/Static.000068.05_A.bmp P:/calibrations/20180225024143574/05_A.tka -g P:/data/180225_SJ/Static/000068/Static.000068.05_B.bmp P:/calibrations/20180225024143574/05_B.tka -3d -f P:/app/cfg/mstereo_default.ini -f P:/data/180225_SJ/Static/Static.000068.tex.ini -o P:/data/180225_SJ/Static/Static.000068.obj 
+
+Command line options after -f substitution:
+  P:\app\bin\MStereo.exe -l P:/data/180225_SJ/Static/Static.000068.log -f P:/data/180225_SJ/Static/Static.000068.geo.ini -ignoremissing -growthreads -1 -g P:/data/180225_SJ/Static/000068/Static.000068.01_A.bmp P:/calibrations/20180225024143574/01_A.tka -g P:/data/180225_SJ/Static/000068/Static.000068.01_B.bmp P:/calibrations/20180225024143574/01_B.tka -g P:/data/180225_SJ/Static/000068/Static.000068.02_A.bmp P:/calibrations/20180225024143574/02_A.tka -g P:/data/180225_SJ/Static/000068/Static.000068.02_B.bmp P:/calibrations/20180225024143574/02_B.tka -g P:/data/180225_SJ/Static/000068/Static.000068.03_A.bmp P:/calibrations/20180225024143574/03_A.tka -g P:/data/180225_SJ/Static/000068/Static.000068.03_B.bmp P:/calibrations/20180225024143574/03_B.tka -g P:/data/180225_SJ/Static/000068/Static.000068.04_A.bmp P:/calibrations/20180225024143574/04_A.tka -g P:/data/180225_SJ/Static/000068/Static.000068.04_B.bmp P:/calibrations/20180225024143574/04_B.tka -g P:/data/180225_SJ/Static/000068/Static.000068.05_A.bmp P:/calibrations/20180225024143574/05_A.tka -g P:/data/180225_SJ/Static/000068/Static.000068.05_B.bmp P:/calibrations/20180225024143574/05_B.tka -3d -f P:/app/cfg/mstereo_default.ini -seed_xmin -1000 -seed_xmax 1000 -seed_ymin -200 -seed_ymax 1800 -seed_zmin -800 -seed_zmax 800 -bestresults -adaptive 0.75 -maxskewerror 0.25 -precisionlimit 0.25 -patchradius 7 -seedspacing 80 -seedchi2sigmalimit 1000 -growchi2sigmalimit 4000 -seed -growchi2sigmalimit 1000 -grow -growchi2sigmalimit 2000 -regrow 1 -growchi2sigmalimit 2000 -regrow 2 -fill 50 -f P:/data/180225_SJ/Static/Static.000068.tex.ini -o P:/data/180225_SJ/Static/Static.000068.obj 
+
+Searching images for seed points...
+Growing new surface from current point cloud...
+Growing from rejected seeds...
+Growing from rejected seeds...
+Command line options after -f substitution:
+  P:\app\bin\MStereo.exe -l P:/data/180225_SJ/Static/Static.000068.log -f P:/data/180225_SJ/Static/Static.000068.geo.ini -ignoremissing -growthreads -1 -g P:/data/180225_SJ/Static/000068/Static.000068.01_A.bmp P:/calibrations/20180225024143574/01_A.tka -g P:/data/180225_SJ/Static/000068/Static.000068.01_B.bmp P:/calibrations/20180225024143574/01_B.tka -g P:/data/180225_SJ/Static/000068/Static.000068.02_A.bmp P:/calibrations/20180225024143574/02_A.tka -g P:/data/180225_SJ/Static/000068/Static.000068.02_B.bmp P:/calibrations/20180225024143574/02_B.tka -g P:/data/180225_SJ/Static/000068/Static.000068.03_A.bmp P:/calibrations/20180225024143574/03_A.tka -g P:/data/180225_SJ/Static/000068/Static.000068.03_B.bmp P:/calibrations/20180225024143574/03_B.tka -g P:/data/180225_SJ/Static/000068/Static.000068.04_A.bmp P:/calibrations/20180225024143574/04_A.tka -g P:/data/180225_SJ/Static/000068/Static.000068.04_B.bmp P:/calibrations/20180225024143574/04_B.tka -g P:/data/180225_SJ/Static/000068/Static.000068.05_A.bmp P:/calibrations/20180225024143574/05_A.tka -g P:/data/180225_SJ/Static/000068/Static.000068.05_B.bmp P:/calibrations/20180225024143574/05_B.tka -3d -f P:/app/cfg/mstereo_default.ini -seed_xmin -1000 -seed_xmax 1000 -seed_ymin -200 -seed_ymax 1800 -seed_zmin -800 -seed_zmax 800 -bestresults -adaptive 0.75 -maxskewerror 0.25 -precisionlimit 0.25 -patchradius 7 -seedspacing 80 -seedchi2sigmalimit 1000 -growchi2sigmalimit 4000 -seed -growchi2sigmalimit 1000 -grow -growchi2sigmalimit 2000 -regrow 1 -growchi2sigmalimit 2000 -regrow 2 -fill 50 -f P:/data/180225_SJ/Static/Static.000068.tex.ini -t P:/data/180225_SJ/Static/000068/Static.000068.01_C.bmp P:/calibrations/20180225024143574/01_C.tka -t P:/data/180225_SJ/Static/000068/Static.000068.02_C.bmp P:/calibrations/20180225024143574/02_C.tka -t P:/data/180225_SJ/Static/000068/Static.000068.03_C.bmp P:/calibrations/20180225024143574/03_C.tka -t P:/data/180225_SJ/Static/000068/Static.000068.04_C.bmp P:/calibrations/20180225024143574/04_C.tka -t P:/data/180225_SJ/Static/000068/Static.000068.05_C.bmp P:/calibrations/20180225024143574/05_C.tka -texture -filter 1 -1.0 -o P:/data/180225_SJ/Static/Static.000068.obj 
+
+Triangulating point cloud...
+Identifying aberrant triangles...
+Filling holes smaller than 50 mm in diameter...
+Final texture pod assignments: 1 2 3 4 5 
+Texturing surface TextureMapNCameras(float blendingSpeed)...
+Balancing color spaces...
+Texture 1: 20169 samples, RMS = 0.0615311
+Texture 2: 22692 samples, RMS = 0.0545181
+Texture 3: 15866 samples, RMS = 0.0650263
+Texture 4: 13317 samples, RMS = 0.0995372
+Texture 5: 14542 samples, RMS = 0.0549297
+
+Filtering surface noise...
+Saving surface to P:/data/180225_SJ/Static/Static.000068.obj
+End
