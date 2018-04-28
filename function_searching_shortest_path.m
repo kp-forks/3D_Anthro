@@ -1,4 +1,3 @@
-b
 function curve = function_searching_shortest_path(V, F, points, loop, simplified, smooth, interval)
 
     % loop: 0, not closed curve
