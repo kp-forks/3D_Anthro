@@ -1,3 +1,4 @@
+b
 function curve = function_searching_shortest_path(V, F, points, loop, simplified, smooth, interval)
 
     % loop: 0, not closed curve
@@ -21,6 +22,7 @@ function curve = function_searching_shortest_path(V, F, points, loop, simplified
     vertexPairList = [F(:, 1:2); F(:, 2:3); F(:, 1:2:3)];
     vertexPairList = unique(vertexPairList, 'rows', 'stable');
     vertexPairList = [vertexPairList; [vertexPairList(:, 2), vertexPairList(:, 1)]];
+    vertexPairList = unique(vertexPairList, 'rows', 'stable');
     
     % Euclidean distance
     vertexPairList(:, 3) = sqrt((V(vertexPairList(:, 1), 1) - V(vertexPairList(:, 2), 1)) .^2 + ...
@@ -40,7 +42,7 @@ function curve = function_searching_shortest_path(V, F, points, loop, simplified
     elseif loop == 1
         curveRaw = [curveRaw; function_shortest_path(points(end, :), points(1, :), V, sparsematrix, 'Dijkstra')];
     else
-        error('LOOP shoould be 0 or 1');
+        error('LOOP should be 0 or 1');
     end
     
     for i = 1:size(curveRaw, 1)-1
@@ -55,7 +57,7 @@ function curve = function_searching_shortest_path(V, F, points, loop, simplified
         curve = curveRaw;
     elseif simplified == 1
         numPts = size(curveRaw, 1);
-        simplifiedCurve(1, 1:3) = 0;
+        simplifiedCurve(1, 1:3) = curveRaw(1, :);
         for i = 1:(100/interval-1)
             cnt(i, 1) = round(numPts * (i*interval/100), 0);
             simplifiedCurve(i+1, :) = curveRaw(cnt(i,1), :);
@@ -69,10 +71,10 @@ function curve = function_searching_shortest_path(V, F, points, loop, simplified
             curve = fnplt(simplifiedCurveSmooth);
             curve = curve';
         else
-            error('SMOOTH shoould be 0 or 1');
+            error('SMOOTH should be 0 or 1');
         end
     else
-        error('SIMPLIFIED shoould be 0 or 1');
+        error('SIMPLIFIED should be 0 or 1');
     end
     
     if curve(1, 1) == 0 && curve(1, 2) == 0 && curve(1, 3) == 0

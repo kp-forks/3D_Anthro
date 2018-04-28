@@ -1,4 +1,5 @@
-% based on code of D. Kroon, University of Twente (June 2010)
+% This Matlab code was built based on code of D. Kroon at University of Twente (June 2010)
+% See license.txt to understand the copyright of this code.
 clc
 clear
 
@@ -6,7 +7,7 @@ clear
 assert(filename ~= 0, 'No file is selected.')
 filename_MTL = strrep(filename, 'obj', 'mtl');
 filename_BMP = strrep(filename, 'obj', 'bmp');
-filename_save = strrep(filename, 'obj', 'ply');
+filename_save = fullfile('output', strrep(filename, 'obj', 'ply'));
 
 % Open a DI3D OBJ textfile
 fprintf('- Opening the OBJ file\n');
