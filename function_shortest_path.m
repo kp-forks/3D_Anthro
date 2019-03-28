@@ -4,9 +4,9 @@ function pathxyz = function_shortest_path(point1, point2, V, sparsematrix, metho
         V(:, 4:end) = [];
     end
     ptCloudVertex = pointCloud(V);
-    [index, dump] = findNearestNeighbors(ptCloudVertex, point1, 1);
+    [index, ~] = findNearestNeighbors(ptCloudVertex, point1, 1);
     point1 = V(index, :);
-    [index, dump] = findNearestNeighbors(ptCloudVertex, point2, 1);
+    [index, ~] = findNearestNeighbors(ptCloudVertex, point2, 1);
     point2 = V(index, :);
     
     point1Index = find(V(:, 1) == point1(1));
@@ -35,7 +35,7 @@ function pathxyz = function_shortest_path(point1, point2, V, sparsematrix, metho
     assert(size(point2Index, 1) == 1);
 
     % shortestpath
-    [dump1, path, dump2] = graphshortestpath(sparsematrix, point1Index, point2Index, 'method', method);
+    [~, path, ~] = graphshortestpath(sparsematrix, point1Index, point2Index, 'method', method);
     path = path';
     if ~isempty(path)
         for i = 1:size(path, 1)
