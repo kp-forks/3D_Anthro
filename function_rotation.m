@@ -20,7 +20,7 @@ function R = function_rotation(P1, P2, axis, alignTo)
             R = function_rotationmat3D(rotationAngle/180*pi, A3);
             P1 = round(function_rotation_matrix(P1, R), 4);
             P2 = round(function_rotation_matrix(P2, R), 4);
-            assert(P1(A2) == P2(A2), 'error - X rotatoin');
+            assert(P1(A2) == P2(A2), 'error - X rotation');
             
         elseif strcmp(alignTo, 'Z') || strcmp(alignTo, 'z')
             vectorAxis = [0, 1];
@@ -34,7 +34,7 @@ function R = function_rotation(P1, P2, axis, alignTo)
             R = function_rotationmat3D(rotationAngle/180*pi, A3);
             P1 = round(function_rotation_matrix(P1, R), 4);
             P2 = round(function_rotation_matrix(P2, R), 4);
-            assert(P1(A1) == P2(A1), 'error - X rotatoin');
+            assert(P1(A1) == P2(A1), 'error - X rotation');
         end
         
     elseif strcmp(axis, 'Y') || strcmp(axis, 'y')
@@ -49,7 +49,7 @@ function R = function_rotation(P1, P2, axis, alignTo)
             R = function_rotationmat3D(rotationAngle/180*pi, A3);
             P1 = round(function_rotation_matrix(P1, R), 4);
             P2 = round(function_rotation_matrix(P2, R), 4);
-            assert(P1(A2) == P2(A2), 'error - Y rotatoin');
+            assert(P1(A2) == P2(A2), 'error - Y rotation');
 
         elseif strcmp(alignTo, 'Z') || strcmp(alignTo, 'z')
             vectorAxis = [0, 1];
@@ -62,7 +62,7 @@ function R = function_rotation(P1, P2, axis, alignTo)
             R = function_rotationmat3D(rotationAngle/180*pi, A3);
             P1 = round(function_rotation_matrix(P1, R), 4);
             P2 = round(function_rotation_matrix(P2, R), 4);
-            assert(P1(A1) == P2(A1), 'error - Y rotatoin');
+            assert(P1(A1) == P2(A1), 'error - Y rotation');
         end
         
     elseif strcmp(axis, 'Z') || strcmp(axis, 'z')
@@ -77,7 +77,7 @@ function R = function_rotation(P1, P2, axis, alignTo)
             R = function_rotationmat3D(rotationAngle/180*pi, A3);
             P1 = round(function_rotation_matrix(P1, R), 4);
             P2 = round(function_rotation_matrix(P2, R), 4);
-            assert(P1(A2) == P2(A2), 'error - Z rotatoin');
+            assert(P1(A2) == P2(A2), 'error - Z rotation');
             
         elseif strcmp(alignTo, 'Y') || strcmp(alignTo, 'y')
             vectorAxis = [0, 1];
@@ -90,6 +90,6 @@ function R = function_rotation(P1, P2, axis, alignTo)
             R = function_rotationmat3D(rotationAngle/180*pi, A3);
             P1 = round(function_rotation_matrix(P1, R), 4);
             P2 = round(function_rotation_matrix(P2, R), 4);
-            assert(P1(A1) == P2(A1), 'error - Z rotatoin');
+            assert(P1(A1) == P2(A1), 'error - Z rotation');
         end
     end
