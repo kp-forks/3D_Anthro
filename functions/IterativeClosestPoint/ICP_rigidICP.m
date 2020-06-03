@@ -9,7 +9,7 @@ function [error,Reallignedsource,transform]=ICP_rigidICP(target,source,flag,Indi
 
 
 if flag==0
-[Prealligned_source,Prealligned_target,transformtarget ]=Preall(target,source);
+[Prealligned_source,Prealligned_target,transformtarget ]=ICP_Preall(target,source);
 else
     Prealligned_source=source;
     Prealligned_target=target;
