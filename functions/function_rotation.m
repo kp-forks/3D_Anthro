@@ -27,7 +27,7 @@ function R = function_rotation(P1, P2, axis, alignTo)
             vectorK = [P1(A1) - P2(A1), P1(A2) - P2(A2)];
             rotationAngle = acosd(dot(vectorK, vectorAxis) / (norm(vectorK) * norm(vectorAxis)));
 
-            if P1(A1) > P2(A1)
+            if P1(A1) < P2(A1)
                 rotationAngle = rotationAngle * -1;
             else
             end

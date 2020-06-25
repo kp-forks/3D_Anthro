@@ -1,0 +1,39 @@
+
+
+
+newest approach
+
+https://github.com/zishun/geodesic_matlab/tree/master
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+To run the examples with 64bit (Matlab & Windows 7):
+
+1. Download the C++ files: https://code.google.com/p/geodesic/downloads/list & unpack
+2. Download boost: http://www.boost.org/ & unpack.
+
+3. Microsoft Visual Studio: New Project -> Visual C++ -> Win32 -> Win32 Project -> Application Settings -> DLL -> Empty Project -> SDL Off
+
+4. Go to Menu: Build -> Conifguration Manager -> Active solution platform -> New -> x64 -> Copy settings from Win32 -> OK
+5. Go to Menu: Project -> Properties -> Configuration Properties -> VC++ Directories -> Include Directores -> Edit -> New Line -> Select the boost folder -> OK
+
+6. Add to the project: 12 geodesic header files & 1 geodesic source file
+7. Change code in "geodesic_algorithm_exact.h" in line 549 to:
+m_queue_max_size = std::max<int>(m_queue.size(), m_queue_max_size);
+
+8. Build Solution -> Rename to "geodesic_debug.dll" -> Move file to geodesic Matlab folder -> Try the examples
