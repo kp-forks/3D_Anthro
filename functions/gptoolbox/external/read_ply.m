@@ -11,7 +11,7 @@ function [vertex,face,d,c] = read_ply(filename)
 %   Copyright (c) 2003 Gabriel Peyr?
 
 [d,c] = plyread(filename);
-vi = d.face.vertex_indices;
+vi = d.face.vertex_index;
 nf = length(vi);
 % http://stackoverflow.com/a/6210539/148668
 % This is slow...
