@@ -106,7 +106,7 @@ BibTeX entry:
 
 ```bibtex
 @misc{gptoolbox,
-  title = {gptoolbox: Geometry Processing Toolbox},
+  title = {{gptoolbox}: Geometry Processing Toolbox},
   author = {Alec Jacobson and others},
   note = {http://github.com/alecjacobson/gptoolbox},
   year = {2018},
