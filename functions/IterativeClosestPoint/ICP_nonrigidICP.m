@@ -20,7 +20,7 @@ function [templateV] = ICP_nonrigidICP(targetV, templateV, targetF, templateF, i
 % OUTPUT
 % -registered: registered template vertices on target mesh. Faces are not affected and remain the same is before the registration (Fs). 
 
-if nargin <= 8
+if nargin < 8
     error('Wrong number of input arguments')
 elseif nargin == 8
     weight(1:size(templateV, 1),1) = 0.5;

@@ -46,7 +46,7 @@ function R = function_rotation(P1, P2, axis, alignTo)
             else
                 rotationAngle = rotationAngle * -1;
             end
-            R = function_rotationmat3D(rotationAngle/180*pi, A3);
+            R = function_rotationmat3D((rotationAngle)/180*pi, A3);
             P1 = round(function_rotation_matrix(P1, R), 4);
             P2 = round(function_rotation_matrix(P2, R), 4);
             assert(P1(A2) == P2(A2), 'error - Y rotation');
