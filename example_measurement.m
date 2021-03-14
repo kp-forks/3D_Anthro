@@ -1,4 +1,4 @@
-function measurements = function_measurement(ListFace, ListVertex, landmark, subject_name, visualization)
+function measurements = example_measurement(ListFace, ListVertex, landmark, subject_name, visualization)
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % Matlab Tutorial for 3D Anthropometry
     %

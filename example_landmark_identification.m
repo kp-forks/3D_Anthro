@@ -1,4 +1,4 @@
-function landmark_identified = function_landmark_identification(ListFace, ListVertex, landmark, visualization)
+function landmark_identified = example_landmark_identification(ListFace, ListVertex, landmark, visualization)
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % Matlab Tutorial for 3D Anthropometry
     %

@@ -228,7 +228,7 @@ for ddd = 1:iterations
         Dtarget(correctionfortargetholes2, 2) = 0.00001;
 
         correctionfortargetholes3 = find(ismember(IDXtarget(:, 3), Indices_edgesT));
-        pp = size(targetV, 1);
+
         targetV = [targetV;templateV(correctionfortargetholes3, :)];
         IDXtarget(correctionfortargetholes3, 3) = pp + (1:size(correctionfortargetholes3, 1))';
         Dtarget(correctionfortargetholes3, 3) = 0.00001;
@@ -237,26 +237,25 @@ for ddd = 1:iterations
     summD = sum(Dtarget, 2);
     summD2 = repmat(summD, 1, 3);
     summD3 = summD2-Dtarget;
-    weightsm = summD3./(summD2 * 2);
-    Targettempset = horzcat(weightsm(:, 1).* targetV(IDXtarget(:, 1), 1), weightsm(:, 1).* targetV(IDXtarget(:, 1), 2), weightsm(:, 1).* targetV(IDXtarget(:, 1), 3)) + horzcat(weightsm(:, 2).* targetV(IDXtarget(:, 2), 1), weightsm(:, 2).* targetV(IDXtarget(:, 2), 2), weightsm(:, 2).* targetV(IDXtarget(:, 2), 3)) + horzcat(weightsm(:, 3).* targetV(IDXtarget(:, 3), 1), weightsm(:, 3).* targetV(IDXtarget(:, 3), 2), weightsm(:, 3).* targetV(IDXtarget(:, 3), 3));
+    weightSum = summD3./(summD2 * 2);
+    TargetTempSet = horzcat(weightSum(:, 1).* targetV(IDXtarget(:, 1), 1), weightSum(:, 1).* targetV(IDXtarget(:, 1), 2), weightSum(:, 1).* targetV(IDXtarget(:, 1), 3)) + horzcat(weightSum(:, 2).* targetV(IDXtarget(:, 2), 1), weightSum(:, 2).* targetV(IDXtarget(:, 2), 2), weightSum(:, 2).* targetV(IDXtarget(:, 2), 3)) + horzcat(weightSum(:, 3).* targetV(IDXtarget(:, 3), 1), weightSum(:, 3).* targetV(IDXtarget(:, 3), 2), weightSum(:, 3).* targetV(IDXtarget(:, 3), 3));
 
     targetV = targetV(1:pp1, :);
 
     for i = 1:size(templateV, 1)
-        templateset = templateV(IDXtemplate(i, 1:k)', :);
-        targetset = Targettempset(IDXtemplate(i, 1:k)', :);
-        [~, ~, arraymap{i, 1}] = procrustes(targetset, templateset, 'scaling', 0, 'reflection', 0);
-
+        templateSet = templateV(IDXtemplate(i, 1:k)', :);
+        targetSet = TargetTempSet(IDXtemplate(i, 1:k)', :);
+        [~, ~, arraymap{i, 1}] = procrustes(targetSet, templateSet, 'scaling', 0, 'reflection', 0);
     end
-    templateVapprox = templateV;
-    templateVtemp = zeros(size(templateV, 1), 3);
+    templateV_approx = templateV;
+    templateV_temp = zeros(size(templateV, 1), 3);
     for i = 1:size(templateV, 1)
         for ggg = 1:k
-            templateVtemp(ggg, :) = weights(i, ggg) * (arraymap{IDXtemplate(i, ggg), 1}.b * templateV(i, :) * arraymap{IDXtemplate(i, ggg), 1}.T + arraymap{IDXtemplate(i, ggg), 1}.c(1, :));
+            templateV_temp(ggg, :) = weights(i, ggg) * (arraymap{IDXtemplate(i, ggg), 1}.b * templateV(i, :) * arraymap{IDXtemplate(i, ggg), 1}.T + arraymap{IDXtemplate(i, ggg), 1}.c(1, :));
         end
-        templateV(i, :) = sum(templateVtemp(1:k, :));
+        templateV(i, :) = sum(templateV_temp(1:k, :));
     end
-    templateV = templateVapprox + (templateV-templateVapprox) .* weight;
+    templateV = templateV_approx + (templateV-templateV_approx) .* weight;
 
     % toc
     if figureOn == 1
