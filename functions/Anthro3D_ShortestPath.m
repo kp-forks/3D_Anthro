@@ -1,4 +1,4 @@
-function curve = Anthro_ShortestPath(V, F, points, loop, simplified, smooth, interval)
+function curve = Anthro3D_ShortestPath(V, F, points, loop, simplified, smooth, interval)
     % searching a shortest path along the mesh, which is passing designated points
     
     % loop: 0, not closed curve

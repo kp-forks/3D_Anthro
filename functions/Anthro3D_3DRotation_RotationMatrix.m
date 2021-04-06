@@ -1,4 +1,4 @@
-function RotationMatrix = Anthro_3DRotation_RotationMatrix(RotationAngle, Axis)
+function RotationMatrix = Anthro3D_3DRotation_RotationMatrix(RotationAngle, Axis)
 % creates a rotation matrix such that [rotationMatrix] * [x]
 % operates on [x] by rotating [x] around the origin rotationAngle (radians) around line
 % connecting the origin to the point "Axis"

@@ -1,4 +1,4 @@
-function R = Anthro_3DRotation(P1, P2, rotationAxis, alignTo)
+function R = Anthro3D_3DRotation(P1, P2, rotationAxis, alignTo)
     if strcmp(rotationAxis, 'X') || strcmp(rotationAxis, 'x')
         A1 = 2; A2 = 3; A3 = [1, 0, 0];
     elseif strcmp(rotationAxis, 'Y') || strcmp(rotationAxis, 'y')
@@ -17,9 +17,9 @@ function R = Anthro_3DRotation(P1, P2, rotationAxis, alignTo)
                 rotationAngle = rotationAngle * -1;
             else
             end
-            R = Anthro_3DRotation_RotationMatrix(rotationAngle/180*pi, A3);
-            P1 = round(function_Rotation(P1, R), 4);
-            P2 = round(function_Rotation(P2, R), 4);
+            R = Anthro3D_3DRotation_RotationMatrix(rotationAngle/180*pi, A3);
+            P1 = round(Anthro3D_3DRotation_Rotate(P1, R), 4);
+            P2 = round(Anthro3D_3DRotation_Rotate(P2, R), 4);
             assert(P1(A2) == P2(A2), 'error - X rotation');
             
         elseif strcmp(alignTo, 'Z') || strcmp(alignTo, 'z')
@@ -31,9 +31,9 @@ function R = Anthro_3DRotation(P1, P2, rotationAxis, alignTo)
                 rotationAngle = rotationAngle * -1;
             else
             end
-            R = Anthro_3DRotation_RotationMatrix(rotationAngle/180*pi, A3);
-            P1 = round(function_Rotation(P1, R), 4);
-            P2 = round(function_Rotation(P2, R), 4);
+            R = Anthro3D_3DRotation_RotationMatrix(rotationAngle/180*pi, A3);
+            P1 = round(Anthro3D_3DRotation_Rotate(P1, R), 4);
+            P2 = round(Anthro3D_3DRotation_Rotate(P2, R), 4);
             assert(P1(A1) == P2(A1), 'error - X rotation');
         end
         
@@ -46,9 +46,9 @@ function R = Anthro_3DRotation(P1, P2, rotationAxis, alignTo)
             else
                 rotationAngle = rotationAngle * -1;
             end
-            R = Anthro_3DRotation_RotationMatrix((rotationAngle)/180*pi, A3);
-            P1 = round(function_Rotation(P1, R), 4);
-            P2 = round(function_Rotation(P2, R), 4);
+            R = Anthro3D_3DRotation_RotationMatrix((rotationAngle)/180*pi, A3);
+            P1 = round(Anthro3D_3DRotation_Rotate(P1, R), 4);
+            P2 = round(Anthro3D_3DRotation_Rotate(P2, R), 4);
             assert(P1(A2) == P2(A2), 'error - Y rotation');
 
         elseif strcmp(alignTo, 'Z') || strcmp(alignTo, 'z')
@@ -59,9 +59,9 @@ function R = Anthro_3DRotation(P1, P2, rotationAxis, alignTo)
                 rotationAngle = rotationAngle * -1;
             else
             end
-            R = Anthro_3DRotation_RotationMatrix(rotationAngle/180*pi, A3);
-            P1 = round(function_Rotation(P1, R), 4);
-            P2 = round(function_Rotation(P2, R), 4);
+            R = Anthro3D_3DRotation_RotationMatrix(rotationAngle/180*pi, A3);
+            P1 = round(Anthro3D_3DRotation_Rotate(P1, R), 4);
+            P2 = round(Anthro3D_3DRotation_Rotate(P2, R), 4);
             assert(P1(A1) == P2(A1), 'error - Y rotation');
         end
         
@@ -74,9 +74,9 @@ function R = Anthro_3DRotation(P1, P2, rotationAxis, alignTo)
                 rotationAngle = rotationAngle * -1;
             else
             end
-            R = Anthro_3DRotation_RotationMatrix(rotationAngle/180*pi, A3);
-            P1 = round(function_Rotation(P1, R), 4);
-            P2 = round(function_Rotation(P2, R), 4);
+            R = Anthro3D_3DRotation_RotationMatrix(rotationAngle/180*pi, A3);
+            P1 = round(Anthro3D_3DRotation_Rotate(P1, R), 4);
+            P2 = round(Anthro3D_3DRotation_Rotate(P2, R), 4);
             assert(P1(A2) == P2(A2), 'error - Z rotation');
             
         elseif strcmp(alignTo, 'Y') || strcmp(alignTo, 'y')
@@ -87,19 +87,14 @@ function R = Anthro_3DRotation(P1, P2, rotationAxis, alignTo)
             else
                 rotationAngle = rotationAngle * -1;
             end
-            R = Anthro_3DRotation_RotationMatrix(rotationAngle/180*pi, A3);
-            P1 = round(function_Rotation(P1, R), 4);
-            P2 = round(function_Rotation(P2, R), 4);
+            R = Anthro3D_3DRotation_RotationMatrix(rotationAngle/180*pi, A3);
+            P1 = round(Anthro3D_3DRotation_Rotate(P1, R), 4);
+            P2 = round(Anthro3D_3DRotation_Rotate(P2, R), 4);
             assert(P1(A1) == P2(A1), 'error - Z rotation');
         end
     end
     
     
-function data = function_Rotation(data, rMatrix)
-    data_copy = data;
-    data(:, 1) = rMatrix(1, 1)*data_copy(:, 1) + rMatrix(1, 2)*data_copy(:, 2) + rMatrix(1, 3)*data_copy(:, 3);
-    data(:, 2) = rMatrix(2, 1)*data_copy(:, 1) + rMatrix(2, 2)*data_copy(:, 2) + rMatrix(2, 3)*data_copy(:, 3);
-    data(:, 3) = rMatrix(3, 1)*data_copy(:, 1) + rMatrix(3, 2)*data_copy(:, 2) + rMatrix(3, 3)*data_copy(:, 3);
     
     
     
@@ -107,17 +102,7 @@ function data = function_Rotation(data, rMatrix)
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-% function R = function_rotation(P1, P2, rotationAxis, alignTo)
+% function R = Anthro3D_3DRotation_Rotate(P1, P2, rotationAxis, alignTo)
 %     if strcmp(rotationAxis, 'X') || strcmp(rotationAxis, 'x')
 %         A1 = 2; A2 = 3; A3 = [1, 0, 0];
 %     elseif strcmp(rotationAxis, 'Y') || strcmp(rotationAxis, 'y')
@@ -189,4 +174,4 @@ function data = function_Rotation(data, rMatrix)
 %             rotationAngle = rotationAngle * -1;
 %         end
 %     end
-%     R = Anthro_3DRotation_RotationMatrix(rotationAngle/180*pi, A3);
+%     R = Anthro3D_3DRotation_RotationMatrix(rotationAngle/180*pi, A3);

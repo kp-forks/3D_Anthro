@@ -1,4 +1,4 @@
-function   [xc,yc,R,a] = circFit(x,y)
+function   [xc,yc,R,a] = Anthro3D_CircFit3D_circFit(x,y)
 %
 %   [xc yx R] = circfit(x,y)
 %

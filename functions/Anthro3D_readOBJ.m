@@ -3,7 +3,7 @@
 % Please refer to the original license.txt
 
 
-function obj = Anthro_readOBJ(fname)
+function obj = Anthro3D_readOBJ(fname)
 %
 % obj = readObj(fname)
 %

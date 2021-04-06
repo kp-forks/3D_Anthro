@@ -1,4 +1,4 @@
-function Anthro_saveSTL(V, F, filename_save)
+function Anthro3D_saveSTL(V, F, filename_save)
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % Matlab Tutorial for 3D Anthropometry
     %

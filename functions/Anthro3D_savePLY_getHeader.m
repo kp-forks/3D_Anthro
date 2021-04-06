@@ -1,4 +1,4 @@
-function Header = Anthro_savePLY_getHeader(sizeV, sizeF, hasTexture)
+function Header = Anthro3D_savePLY_getHeader(sizeV, sizeF, hasTexture)
 
     if hasTexture
         Header{1, 1}  = sprintf('ply\n');

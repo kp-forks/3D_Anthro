@@ -1,4 +1,4 @@
-function [W, G] = Anthro_MeshSubdivision(V, F)
+function [W, G] = Anthro3D_MeshSubdivision(V, F)
     %function divides a triangular mesh represented by V, F
     %linearly. Output vertices W are unique
     %Output faces G are unique.
@@ -14,6 +14,8 @@ function [W, G] = Anthro_MeshSubdivision(V, F)
     % v2 ----- v3          v2-- b --v3
     %
     % start with checking input arguments
+    
+    
     if nargin ~= 2
         error('wrong number of arguments');
     end

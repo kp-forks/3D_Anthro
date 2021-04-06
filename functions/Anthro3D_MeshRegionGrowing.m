@@ -1,4 +1,4 @@
-function clust = Anthro_MeshRegionGrowing(seed_point, V, sensitivity)
+function clust = Anthro3D_MeshRegionGrowing(seed_point, V, sensitivity)
 % need elaborated for faster calculation
     cnt = 0;
     flag = 1;

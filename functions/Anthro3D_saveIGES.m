@@ -1,4 +1,4 @@
-function Anthro_saveIGES(obj,filename,varargin)
+function Anthro3D_saveIGES(obj,filename,varargin)
 % IGESOUT  IGES Converter for points, lines, and Nurbs curves and surfaces
 %
 %   IGESOUT(OBJ,FILENAME) writes an IGES (*.igs) file with the given

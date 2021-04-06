@@ -1,4 +1,4 @@
-function LMs = Anthro_readLandmarksFromIGES(filename)
+function LMs = Anthro3D_readLandmarksFromIGES(filename)
 % this code needs to be tested for different IGES formats
     fid = fopen(filename);
         clear tmp

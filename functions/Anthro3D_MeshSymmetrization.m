@@ -1,4 +1,4 @@
-function [Vsymmeterized] = Anthro_MeshSymmetrization(V, Vpairs, idxCenterPts)
+function [Vsymmeterized] = Anthro3D_MeshSymmetrization(V, Vpairs, idxCenterPts)
 % Need a template model which is exactly symmetric, so that there are central points and pairs
 % This code is not generalized, and only for this specific analysis.
 

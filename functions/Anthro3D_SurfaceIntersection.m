@@ -1,4 +1,4 @@
-function [intMatrix, intSurface] = Anthro_SurfaceIntersection(surface1, surface2, varargin)
+function [intMatrix, intSurface] = Anthro3D_SurfaceIntersection(surface1, surface2, varargin)
 %SURFACEINTERSECTION intersection of 2 surfaces
 % [intMatrix, intSurface] = SurfaceIntersection(surface1, surface2)
 % calculates the intersection of surfaces 1 and 2. Code can either return

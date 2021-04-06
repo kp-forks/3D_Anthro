@@ -1,4 +1,4 @@
-function rotatedPts = RodriguesRotation(providedPts, origNormal, newNormal)
+function rotatedPts = Anthro3D_CircFit3D_RodriguesRotation(providedPts, origNormal, newNormal)
 % rotate provided points based on a staring and ending vector
 origNormal = origNormal/norm(origNormal);
 newNormal = newNormal/norm(newNormal);

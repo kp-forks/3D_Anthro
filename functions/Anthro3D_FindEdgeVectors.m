@@ -1,4 +1,4 @@
-function [EV] = Anthro_FindEdgeVectors(V, F)
+function [EV] = Anthro3D_FindEdgeVectors(V, F)
     % surface centroid
     C(size(F,1), 3) = NaN;
     for i = 1:size(F, 1)

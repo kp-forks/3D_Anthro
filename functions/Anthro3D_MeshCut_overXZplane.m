@@ -1,7 +1,7 @@
-function [V, F] = Anthro_MeshCut_underXZplane(V, F, cutlineY)
-    % cut under cutlineY value (when it is Y-up coordination)
+function [V, F] = Anthro3D_MeshCut_overXZplane(V, F, cutlineY)
+    % cut over cutlineY value (when it is Y-up coordination)
     
-    V(V(:,2) < cutlineY, :) = NaN;
+    V(V(:,2) > cutlineY, :) = NaN;
     cutList = find(isnan(V(:,1)));
     keepList = find(~isnan(V(:,1)));
     

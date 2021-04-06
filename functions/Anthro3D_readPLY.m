@@ -1,4 +1,4 @@
-function [ListV, ListF, F_backup, Header] = Anthro_readPLY(filename)
+function [ListV, ListF, F_backup, Header] = Anthro3D_readPLY(filename)
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % Matlab Tutorial for 3D Anthropometry
     %

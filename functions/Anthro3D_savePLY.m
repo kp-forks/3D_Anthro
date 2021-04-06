@@ -1,4 +1,4 @@
-function Anthro_savePLY(V, F, filename_save)
+function Anthro3D_savePLY(V, F, filename_save)
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % Matlab Tutorial for 3D Anthropometry
     %
@@ -23,7 +23,7 @@ function Anthro_savePLY(V, F, filename_save)
 
     sizeV = size(V, 1);
     sizeF = size(F, 1);
-    Header = Anthro_savePLY_getHeader(sizeV, sizeF, hasTexture);
+    Header = Anthro3D_savePLY_getHeader(sizeV, sizeF, hasTexture);
     
     fid = fopen(filename_save, 'w');
         for i = 1:size(Header, 1)
