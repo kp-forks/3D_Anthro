@@ -54,7 +54,7 @@ function W = bbw_biharmonic_bounded(V, F, b, bc)
     % SET UP PROBLEM AND SOLVE
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   
-    disp('<starting BBW>');
+%     disp('<starting BBW>');
     
     % build quadratic coefficient matrix (bilaplacian operator)
     Q = L*(M\L);
@@ -70,7 +70,7 @@ function W = bbw_biharmonic_bounded(V, F, b, bc)
     % loop over handles
     for i = 1:m
         tic;
-        fprintf('Point %d / %d ', i, size(b, 2));
+%         fprintf('Point %d / %d ', i, size(b, 2));
         % enforce boundary conditions via lower and upper bounds
         % lx(b) = bc(:, i);
         % ux(b) = bc(:, i);
@@ -83,9 +83,9 @@ function W = bbw_biharmonic_bounded(V, F, b, bc)
 %         end
       % set weights to solution in weight matrix
       W(:, i) = x(1:n);
-      fprintf('(Lap time: %0.2gs)\n', toc);
+%       fprintf('(Lap time: %0.2gs)\n', toc);
       t = t + toc;
     end
-    fprintf('Total elapsed time: %0.1gs\n', t);
-    fprintf('Average time per handle: %0.1gs\n\n', t/m);
+%     fprintf('Total elapsed time: %0.1gs\n', t);
+%     fprintf('Average time per handle: %0.1gs\n\n', t/m);
 end

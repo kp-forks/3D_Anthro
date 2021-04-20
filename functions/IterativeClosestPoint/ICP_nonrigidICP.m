@@ -1,4 +1,4 @@
-function [templateV] = ICP_nonrigidICP(targetV, templateV, targetF, templateF, iterations, flag_prealligndata, figureOn, rigidICP, weight)
+function [templateV] = ICP_nonrigidICP(targetV, templateV, targetF, templateF, iterations, flag_prealligndata, figureOn, weight, scale, reflection)
 
 % INPUT
 % - target: vertices of target mesh; n * 3 array of xyz coordinates
@@ -21,9 +21,14 @@ function [templateV] = ICP_nonrigidICP(targetV, templateV, targetF, templateF, i
 % -registered: registered template vertices on target mesh. Faces are not affected and remain the same is before the registration (Fs). 
 
 if nargin < 8
-    error('Wrong number of input arguments')
+    error('Not enough input arguments')
 elseif nargin == 8
     weight(1:size(templateV, 1),1) = 0.5;
+    scale = 0;
+    reflection = 0;
+elseif nargin == 9
+    scale = 0;
+    reflection = 0;
 end
 
 
@@ -31,8 +36,8 @@ end
 tic
 clf
 %assesment of meshes quality and simplification/improvement
-disp(' ');
-disp('<starting ICP algorithm>');
+% disp(' ');
+% disp('<starting ICP algorithm>');
 % disp('Remeshing and simplification target Mesh');
 
 
@@ -43,28 +48,26 @@ disp('<starting ICP algorithm>');
 [Indices_edgesT] = ICP_detectedges(targetV, targetF);
 
 if isempty(Indices_edgesS) == 0
-   disp('Warning: template mesh presents free edges. ');
+%    disp('Warning: template mesh presents free edges. ');
    if flag_prealligndata == 0
        error('template Mesh presents free edges. Preallignement can not reliably be executed') 
    end
 end
 
 if isempty(Indices_edgesT) == 0
-   disp('Warning: Target mesh presents free edges. ');
+%    disp('Warning: Target mesh presents free edges. ');
    if flag_prealligndata == 0
        error('Target mesh presents free edges. Preallignement can not reliably be executed') 
    end
 end
 
-if rigidICP == 1
-    %initial allignment and scaling
-    disp('Rigid allignement');
+%initial allignment and scaling
+% disp('Rigid allignement');
 
-    if flag_prealligndata == 1
-        [~, templateV, ~] = ICP_rigidICP(targetV, templateV, 1, Indices_edgesT, Indices_edgesS);
-    else
-        [~, templateV, ~] = ICP_rigidICP(targetV, templateV, 0, Indices_edgesT, Indices_edgesS);
-    end
+if flag_prealligndata == 1
+    [~, templateV, ~] = ICP_rigidICP(targetV, templateV, 1, Indices_edgesT, Indices_edgesS);
+else
+    [~, templateV, ~] = ICP_rigidICP(targetV, templateV, 0, Indices_edgesT, Indices_edgesS);
 end
 
 if figureOn == 1
@@ -86,85 +89,85 @@ end
 
 % General deformation
 % disp('General deformation');
-% kernel1 = 2:-(0.5/iterations):1.5;
-% kernel2 = 1.4:(0.6/iterations):2;
-% for i  = 1:iterations
-% nrseedingpoints = round(10^(kernel2(1, i)));
-%     IDX1 = [];
-%     IDX2 = [];
-%     [IDX1(:, 1), IDX1(:, 2)] = knnsearch(targetV, templateV);
-%     [IDX2(:, 1), IDX2(:, 2)] = knnsearch(templateV, targetV);
-%     IDX1(:, 3) = 1:length(templateV(:, 1));
-%     IDX2(:, 3) = 1:length(targetV(:, 1));
-% 
-%    
-%     [C, ia] = setdiff(IDX1(:, 1), Indices_edgesT);
-%     IDX1 = IDX1(ia, :);
-% 
-%     [C, ia] = setdiff(IDX2(:, 1), Indices_edgesS);
-%     IDX2 = IDX2(ia, :);
-% 
-%     
-%     templatepartial = templateV(IDX1(:, 3), :);
-%     targetpartial = targetV(IDX2(:, 3), :);
-%     
-%      [IDXS, dS] = knnsearch(targetpartial, templatepartial);
-%      [IDXT, dT] = knnsearch(templatepartial, targetpartial);
-%     
-%      [ppartial] = size(templatepartial, 1);
-%         idx = unique(round((ppartial-1) * rand(nrseedingpoints, 1)) + 1);
-%         temp = templatepartial(idx, :);
-%         [q] = size(idx, 1);
-%      D = pdist2(templatepartial, temp);
-%     
-%     gamma = 1/(2 * (mean(mean(D)))^kernel1(1, i));
-%     Datasettemplate = vertcat(templatepartial, templatepartial(IDXT, :));
-% 
-%     Datasettarget = vertcat(targetpartial(IDXS, :), targetpartial);
-%     Datasettemplate2 = vertcat(D, D(IDXT, :));
-%     vectors = Datasettarget-Datasettemplate;
-%     [r] = size(vectors, 1);
-% 
-%     % define radial basis width for deformation points
-%    
-%     tempy1 = exp(-gamma * (Datasettemplate2.^2));
-% 
-%     tempy2 = zeros(3 * r, 3 * q);
-%     tempy2(1:r, 1:q) = tempy1;
-%     tempy2(r + 1:2 * r, q + 1:2 * q) = tempy1;
-%     tempy2(2 * r + 1:3 * r, 2 * q + 1:3 * q) = tempy1;
-% 
-%     %solve optimal deformation directions
-%     ppi = pinv(tempy2);
-%     modes = ppi * reshape(vectors, 3 * r, 1);
-%     
-%      D2 = pdist2(templateV, temp);
-%     gamma2 = 1/(2 * (mean(mean(D2)))^kernel1(1, i));
-%     
-% 
-%     tempyfull1 = exp(-gamma2 * (D2.^2));
-%     tempyfull2 = zeros(3 * p, 3 * q);
-%     tempyfull2(1:p, 1:q) = tempyfull1;
-%     tempyfull2(p + 1:2 * p, q + 1:2 * q) = tempyfull1;
-%     tempyfull2(2 * p + 1:3 * p, 2 * q + 1:3 * q) = tempyfull1;
-% 
-%     test2 = tempyfull2 * modes;
-%     test2 = reshape(test2, size(test2, 1)/3, 3);
-%     %deforme template mesh
-%     templateV = templateV + test2;
-%     
-%      [~, templateV, ~] = rigidICP(targetV, templateV, 1, Indices_edgesS, Indices_edgesT);
-%      if figureOn == 1
-%         delete(h)
-%         h = trisurf(templateF, templateV(:, 1), templateV(:, 2), templateV(:, 3), 'FaceColor', 'y', 'Edgecolor', 'none');
-%         alpha(0.6)
-%      end
-%     
-% end
+kernel1 = 2:-(0.5/iterations):1.5;
+kernel2 = 1.4:(0.6/iterations):2;
+for i  = 1:iterations
+    nrseedingpoints = round(10^(kernel2(1, i)));
+    IDX1 = [];
+    IDX2 = [];
+    [IDX1(:, 1), IDX1(:, 2)] = knnsearch(targetV, templateV);
+    [IDX2(:, 1), IDX2(:, 2)] = knnsearch(templateV, targetV);
+    IDX1(:, 3) = 1:length(templateV(:, 1));
+    IDX2(:, 3) = 1:length(targetV(:, 1));
+
+   
+    [C, ia] = setdiff(IDX1(:, 1), Indices_edgesT);
+    IDX1 = IDX1(ia, :);
+
+    [C, ia] = setdiff(IDX2(:, 1), Indices_edgesS);
+    IDX2 = IDX2(ia, :);
+
+    
+    templatepartial = templateV(IDX1(:, 3), :);
+    targetpartial = targetV(IDX2(:, 3), :);
+    
+     [IDXS, dS] = knnsearch(targetpartial, templatepartial);
+     [IDXT, dT] = knnsearch(templatepartial, targetpartial);
+    
+     [ppartial] = size(templatepartial, 1);
+        idx = unique(round((ppartial-1) * rand(nrseedingpoints, 1)) + 1);
+        temp = templatepartial(idx, :);
+        [q] = size(idx, 1);
+     D = pdist2(templatepartial, temp);
+    
+    gamma = 1/(2 * (mean(mean(D)))^kernel1(1, i));
+    Datasettemplate = vertcat(templatepartial, templatepartial(IDXT, :));
+
+    Datasettarget = vertcat(targetpartial(IDXS, :), targetpartial);
+    Datasettemplate2 = vertcat(D, D(IDXT, :));
+    vectors = Datasettarget-Datasettemplate;
+    [r] = size(vectors, 1);
+
+    % define radial basis width for deformation points
+   
+    tempy1 = exp(-gamma * (Datasettemplate2.^2));
+
+    tempy2 = zeros(3 * r, 3 * q);
+    tempy2(1:r, 1:q) = tempy1;
+    tempy2(r + 1:2 * r, q + 1:2 * q) = tempy1;
+    tempy2(2 * r + 1:3 * r, 2 * q + 1:3 * q) = tempy1;
+
+    %solve optimal deformation directions
+    ppi = pinv(tempy2);
+    modes = ppi * reshape(vectors, 3 * r, 1);
+    
+     D2 = pdist2(templateV, temp);
+    gamma2 = 1/(2 * (mean(mean(D2)))^kernel1(1, i));
+    
+
+    tempyfull1 = exp(-gamma2 * (D2.^2));
+    tempyfull2 = zeros(3 * p, 3 * q);
+    tempyfull2(1:p, 1:q) = tempyfull1;
+    tempyfull2(p + 1:2 * p, q + 1:2 * q) = tempyfull1;
+    tempyfull2(2 * p + 1:3 * p, 2 * q + 1:3 * q) = tempyfull1;
+
+    test2 = tempyfull2 * modes;
+    test2 = reshape(test2, size(test2, 1)/3, 3);
+    %deforme template mesh
+    templateV = templateV + test2;
+    
+     [~, templateV, ~] = ICP_rigidICP(targetV, templateV, 1, Indices_edgesS, Indices_edgesT);
+     if figureOn == 1
+        delete(h)
+        h = trisurf(templateF, templateV(:, 1), templateV(:, 2), templateV(:, 3), 'FaceColor', 'y', 'Edgecolor', 'none');
+        alpha(0.6)
+     end
+    
+end
     
 
 % local deformation
-disp('Local optimization');
+% disp('Local optimization');
 arraymap = repmat(cell(1), p, 1);
 kk = 12 + iterations;
 
@@ -196,14 +199,12 @@ end
 
     
 for ddd = 1:iterations
-    fprintf('%d / %d\n', ddd, iterations);
-    
+%     fprintf('%d / %d\n', ddd, iterations);
     k = kk - ddd;
     tic
 
     TRS = triangulation(templateF, templateV); 
     normalsS = vertexNormal(TRS) .* cutoff;
-
 
     sumD = sum(Dtemplate(:, 1:k), 2);
     sumD2 = repmat(sumD, 1, k);
@@ -242,13 +243,15 @@ for ddd = 1:iterations
 
     targetV = targetV(1:pp1, :);
 
+    arraymap=cell(size(templateV,1),1);
+    
     for i = 1:size(templateV, 1)
         templateSet = templateV(IDXtemplate(i, 1:k)', :);
         targetSet = TargetTempSet(IDXtemplate(i, 1:k)', :);
-        [~, ~, arraymap{i, 1}] = procrustes(targetSet, templateSet, 'scaling', 0, 'reflection', 0);
+        [~, ~, arraymap{i, 1}] = procrustes(targetSet, templateSet, 'scaling', scale, 'reflection', reflection);
     end
     templateV_approx = templateV;
-    templateV_temp = zeros(size(templateV, 1), 3);
+    templateV_temp = zeros(k, 3);
     for i = 1:size(templateV, 1)
         for ggg = 1:k
             templateV_temp(ggg, :) = weights(i, ggg) * (arraymap{IDXtemplate(i, ggg), 1}.b * templateV(i, :) * arraymap{IDXtemplate(i, ggg), 1}.T + arraymap{IDXtemplate(i, ggg), 1}.c(1, :));

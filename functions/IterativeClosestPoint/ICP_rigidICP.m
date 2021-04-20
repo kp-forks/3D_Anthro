@@ -1,4 +1,4 @@
-function [error,Reallignedsource,transform]=ICP_rigidICP(target,source,flag,Indices_edgesT,Indices_edgesS)
+function [error,Reallignedsource,transform]=ICP_rigidICP(target,source,flag,Indices_edgesS,Indices_edgesT)
 
 % This function rotates, translates and scales a 3D pointcloud "source" of N*3 size (N points in N rows, 3 collumns for XYZ)
 % to fit a similar shaped point cloud "target" again of N by 3 size
@@ -9,19 +9,19 @@ function [error,Reallignedsource,transform]=ICP_rigidICP(target,source,flag,Indi
 
 
 if flag==0
-[Prealligned_source,Prealligned_target,transformtarget ]=ICP_Preall(target,source);
+[Prealligned_source,Prealligned_target,transformtarget ]=Preall(target,source);
 else
     Prealligned_source=source;
     Prealligned_target=target;
 end
 
-% disp('error')
-errortemp(1,:)=0;
+% display ('error')
+errortemp(1,:)=100000;
 index=2;
-[errortemp(index,:),Reallignedsourcetemp] = ICP_manu_allign2(Prealligned_target,Prealligned_source,Indices_edgesS,Indices_edgesT);
+[errortemp(index,:),Reallignedsourcetemp]=ICP_manu_allign2(Prealligned_target,Prealligned_source,Indices_edgesS,Indices_edgesT);
 
-while (abs(errortemp(index-1,:)-errortemp(index,:)))>0.000001
-[errortemp(index+1,:),Reallignedsourcetemp] = ICP_manu_allign2(Prealligned_target,Reallignedsourcetemp,Indices_edgesS,Indices_edgesT);
+while (errortemp(index-1,:)-errortemp(index,:))>0.000001
+[errortemp(index+1,:),Reallignedsourcetemp]=ICP_manu_allign2(Prealligned_target,Reallignedsourcetemp,Indices_edgesS,Indices_edgesT);
 index=index+1;
 d=errortemp(index,:);
 
