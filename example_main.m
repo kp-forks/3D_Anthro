@@ -19,17 +19,17 @@ close all; % close all figures
 save_outputs = 0;
     % 0: outputs will NOT be saved in files
     % 1: outputs will be saved
-if save_outpus == 1
+if save_outputs == 1
     mkdir('output');
 end
 
 
 %% data loading for one subject
-dir = 'source 3D images';
+dir = 'sample 3D images';
 filename = 'face_W.ply';
 filename_3D_scan = fullfile(dir, filename);
 [ListVertex, ListFace, ListFace_backup, HEADER] = ...
-    function_loading_ply_file(filename_3D_scan);
+    Anthro3D_readPLY(filename_3D_scan);
     % If a PLY is not opening by this function, then check if the PLY is
     % binary format or not. Or the PLY might be written in different
     % format, that means this PLY loading function should be modified.
@@ -47,7 +47,7 @@ landmark = textread(filename_landmark, '');
 %       in X Y Z axis (Y-up). The face should faced to +Z direction
 visualization = 0; % 1 = Yes || 0 = No
 landmark = ...
-    main_landmark_identification(ListFace, ListVertex, landmark, visualization); 
+    example_landmark_identification(ListFace, ListVertex, landmark, visualization); 
     % This code is only fit this example. If 
 
     
@@ -65,13 +65,13 @@ origin = landmark('sellion', :);
 visualization = 0; % 0 = No || 1 = Yes
 
 [ListVertex, landmark] = ...
-    function_alignment(reference, origin, ListFace, ListVertex, landmark, visualization);
+    example_alignment(reference, origin, ListFace, ListVertex, landmark, visualization);
 
 % save modified 3D image (PLY file) and landmark table (.mat file)
 if save_outputs == 1
     save('face_W_landmark.mat', 'landmark');
     filename_save = 'face_W_modified.ply';
-    function_saving_ply_file(ListVertex, ListFace_backup, HEADER, filename_save);
+    Anthro3D_savePLY(ListVertex, ListFace_backup, HEADER, filename_save);
 end
 
 
@@ -82,11 +82,11 @@ subject_name = 'S1';
 visualization = 1;
     % 0 = No
     % 1 = Yes
-measurements = main_measurement(ListFace, ListVertex, landmark, subject_name, visualization);
-%%% [ADD] add more facial dimensions to measure in function_measurement %%%
+measurements = example_measurement(ListFace, ListVertex, landmark, subject_name, visualization);
+%%% [need to ADD] add more facial dimensions to measure in function_measurement %%%
 
 
-%%% [ADD]
+%%% [need to ADD]
 % arc, circumference dimensions
 % template registration
 % symmetrization

@@ -57,17 +57,17 @@ function [ListVertex, landmark] = example_alignment(reference, origin, ListFace,
     end
     rotAngle = rotAngle/180*pi;
     if reference.point1(3) > reference.point2(3)
-        R = function_rotationmat3D(-rotAngle, [1, 0, 0]);
+        R = Anthro3D_3DRotation_RotationMatrix(-rotAngle, [1, 0, 0]);
     else
-        R = function_rotationmat3D(rotAngle, [1, 0, 0]);
+        R = Anthro3D_3DRotation_RotationMatrix(rotAngle, [1, 0, 0]);
     end
 
-    ListVertex     = function_rotation_matrix(ListVertex, R);
-    landmark_array = function_rotation_matrix(landmark_array, R);
-    reference.point1  = function_rotation_matrix(reference.point1, R);
-    reference.point2  = function_rotation_matrix(reference.point2, R);
-    reference.point3  = function_rotation_matrix(reference.point3, R);
-    reference.point4  = function_rotation_matrix(reference.point4, R);
+    ListVertex     = Anthro3D_3DRotation_Rotate(ListVertex, R);
+    landmark_array = Anthro3D_3DRotation_Rotate(landmark_array, R);
+    reference.point1  = Anthro3D_3DRotation_Rotate(reference.point1, R);
+    reference.point2  = Anthro3D_3DRotation_Rotate(reference.point2, R);
+    reference.point3  = Anthro3D_3DRotation_Rotate(reference.point3, R);
+    reference.point4  = Anthro3D_3DRotation_Rotate(reference.point4, R);
     
     
     % rotate Z axis
@@ -78,17 +78,17 @@ function [ListVertex, landmark] = example_alignment(reference, origin, ListFace,
     end
     rotAngle = rotAngle/180*pi;
     if reference.point1(1) < reference.point2(1)
-        R = function_rotationmat3D(-rotAngle, [0, 0, 1]);
+        R = Anthro3D_3DRotation_RotationMatrix(-rotAngle, [0, 0, 1]);
     else
-        R = function_rotationmat3D(rotAngle, [0, 0, 1]);
+        R = Anthro3D_3DRotation_RotationMatrix(rotAngle, [0, 0, 1]);
     end
 
-    ListVertex     = function_rotation_matrix(ListVertex, R);
-    landmark_array = function_rotation_matrix(landmark_array, R);
-    reference.point1  = function_rotation_matrix(reference.point1, R);
-    reference.point2  = function_rotation_matrix(reference.point2, R);
-    reference.point3  = function_rotation_matrix(reference.point3, R);
-    reference.point4  = function_rotation_matrix(reference.point4, R);
+    ListVertex     = Anthro3D_3DRotation_Rotate(ListVertex, R);
+    landmark_array = Anthro3D_3DRotation_Rotate(landmark_array, R);
+    reference.point1  = Anthro3D_3DRotation_Rotate(reference.point1, R);
+    reference.point2  = Anthro3D_3DRotation_Rotate(reference.point2, R);
+    reference.point3  = Anthro3D_3DRotation_Rotate(reference.point3, R);
+    reference.point4  = Anthro3D_3DRotation_Rotate(reference.point4, R);
     
     
     % rotate Y axis
@@ -99,17 +99,17 @@ function [ListVertex, landmark] = example_alignment(reference, origin, ListFace,
     end
     rotAngle = rotAngle/180*pi;
     if reference.point3(3) > reference.point4(3)
-        R = function_rotationmat3D(-rotAngle, [0, 1, 0]);
+        R = Anthro3D_3DRotation_RotationMatrix(-rotAngle, [0, 1, 0]);
     else
-        R = function_rotationmat3D(rotAngle, [0, 1, 0]);
+        R = Anthro3D_3DRotation_RotationMatrix(rotAngle, [0, 1, 0]);
     end
 
-    ListVertex     = function_rotation_matrix(ListVertex, R);
-    landmark_array = function_rotation_matrix(landmark_array, R);
-    reference.point1  = function_rotation_matrix(reference.point1, R);
-    reference.point2  = function_rotation_matrix(reference.point2, R);
-    reference.point3  = function_rotation_matrix(reference.point3, R);
-    reference.point4  = function_rotation_matrix(reference.point4, R);
+    ListVertex     = Anthro3D_3DRotation_Rotate(ListVertex, R);
+    landmark_array = Anthro3D_3DRotation_Rotate(landmark_array, R);
+    reference.point1  = Anthro3D_3DRotation_Rotate(reference.point1, R);
+    reference.point2  = Anthro3D_3DRotation_Rotate(reference.point2, R);
+    reference.point3  = Anthro3D_3DRotation_Rotate(reference.point3, R);
+    reference.point4  = Anthro3D_3DRotation_Rotate(reference.point4, R);
     
     
     landmark_array(:, :) = roundn(landmark_array(:, :), -5);
