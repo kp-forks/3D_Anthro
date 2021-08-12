@@ -1,6 +1,7 @@
-function Anthro3D_simplePlotting(V, F, LMs)
+function Anthro3D_simpleTrisurf(F, V, facecolor, lightOn)
+    % facecolor [1 0.88 0.77] for skin color
     figure(99);
-    trisurf(F, V(:,1), V(:,2), V(:,3), 'edgecolor', 'none', 'facecolor', [1 0.88 0.77]);
+    trisurf(F, V(:,1), V(:,2), V(:,3), 'edgecolor', 'none', 'facecolor', facecolor);
         axis equal
         view(2)
         set(gca, 'xtick', [])
@@ -14,7 +15,3 @@ function Anthro3D_simplePlotting(V, F, LMs)
         if lightOn == 1
             light('Position', [3 5 20], 'Style', 'infinite');
         end
-        
-        hold on
-        
-    plot3(LMs(:,1), LMs(:,2), LMs(:,3), 'r.', 'markersize', 20);
