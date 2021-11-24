@@ -68,10 +68,11 @@ function [registered,targetV,targetF]=ICP_nonrigidICPv2(targetV,templateV,target
     %initial allignment and scaling
 %     disp('Rigid allignement source and target mesh');
 
-    if flag_prealligndata==1
+    if flag_prealligndata==0
+        [~,templateV,~]=ICP_rigidICP(targetV,templateV,0,Indices_edgesS,Indices_edgesT);
+    elseif flag_prealligndata==1
         [~,templateV,~]=ICP_rigidICP(targetV,templateV,1,Indices_edgesS,Indices_edgesT);
     else
-        [~,templateV,~]=ICP_rigidICP(targetV,templateV,0,Indices_edgesS,Indices_edgesT);
     end
 
     %plot of the meshes
@@ -88,19 +89,19 @@ function [registered,targetV,targetF]=ICP_nonrigidICPv2(targetV,templateV,target
         alpha(0.6)
     end
 
-    [p]=size(templateV,1);
-
-    xlimm=min(templateV(:,1));
-    xlimM=max(templateV(:,1));
-    Lx=abs(xlimM-xlimm);
-    ylimm=min(templateV(:,2));
-    ylimM=max(templateV(:,2));
-    Ly=abs(ylimM-ylimm);
-    zlimm=min(templateV(:,3));
-    zlimM=max(templateV(:,3));
-    Lz=abs(zlimM-zlimm);
-    [minL]=min([Lx Ly Lz]);
-
+%     [p]=size(templateV,1);
+% 
+%     xlimm=min(templateV(:,1));
+%     xlimM=max(templateV(:,1));
+%     Lx=abs(xlimM-xlimm);
+%     ylimm=min(templateV(:,2));
+%     ylimM=max(templateV(:,2));
+%     Ly=abs(ylimM-ylimm);
+%     zlimm=min(templateV(:,3));
+%     zlimM=max(templateV(:,3));
+%     Lz=abs(zlimM-zlimm);
+%     [minL]=min([Lx Ly Lz]);
+% 
 %     % General deformation
 %     % disp('General deformation');
 %     kernel1=1.5:-(0.5/iterations):1;
@@ -114,11 +115,10 @@ function [registered,targetV,targetF]=ICP_nonrigidICPv2(targetV,templateV,target
 %         seedingmatrix=zeros(length(xseeding)*length(yseeding)*length(zseeding),3);
 %         seedingmatrix(:,3)=repmat(zseeding',length(xseeding)*length(yseeding),1);
 %         tempy=repmat(yseeding,length(zseeding),1);
-%         tempy=reshape(tempy,~(size(tempy)),1);
-% %         tempy=reshape(tempy,numel(tempy),1);
+%         tempy=reshape(tempy,[prod(size(tempy)),1]);
 %         seedingmatrix(:,2)=repmat(tempy,length(xseeding),1);
 %         tempx=repmat(xseeding,length(zseeding)*length(yseeding),1);
-%         seedingmatrix(:,1)=reshape(tempx,~(size(tempy)),1);
+%         seedingmatrix(:,1)=reshape(tempx,[prod(size(tempx)),1]);
 %         [idx,~]=knnsearch(seedingmatrix,templateV);
 %         tempidx=unique(idx);
 %         tempseed=seedingmatrix(tempidx,:);
@@ -227,8 +227,8 @@ function [registered,targetV,targetF]=ICP_nonrigidICPv2(targetV,templateV,target
     testneg=sum(sum((normalsS+normalsT(IDXcheck,:)).^2,2));
     if testneg<testpos
         normalsT=-normalsT;
-        targetF(:,4)=targetF(:,2);
-        targetF(:,2)=[];
+%         targetF(:,4)=targetF(:,2);
+%         targetF(:,2)=[];
     end
 
 
@@ -239,7 +239,6 @@ function [registered,targetV,targetF]=ICP_nonrigidICPv2(targetV,templateV,target
 
         TRS = triangulation(templateF,templateV); 
         normalsS=vertexNormal(TRS).*cutoff;
-
 
         sumD=sum(Dsource(:,1:k),2);
         sumD2=repmat(sumD,1,k);
@@ -287,14 +286,14 @@ function [registered,targetV,targetF]=ICP_nonrigidICPv2(targetV,templateV,target
             sourceset=templateV(IDXsource(i,1:k)',:);
             targetset=Targettempset(IDXsource(i,1:k)',:);
             [~,~,arraymap{i,1}]=procrustes(targetset,sourceset,'scaling',scaling,'reflection',reflection);
-
         end
         templateV_approx=templateV;
+        templateV_temp = zeros(k, 3);
         for i=1:size(templateV,1)
             for ggg=1:k
-                templateVtemp(ggg,:)=weights(i,ggg)*(arraymap{IDXsource(i,ggg),1}.b*templateV(i,:)*arraymap{IDXsource(i,ggg),1}.T+arraymap{IDXsource(i,ggg),1}.c(1,:));
+                templateV_temp(ggg,:)=weights(i,ggg)*(arraymap{IDXsource(i,ggg),1}.b*templateV(i,:)*arraymap{IDXsource(i,ggg),1}.T+arraymap{IDXsource(i,ggg),1}.c(1,:));
             end
-            templateV(i,:)=sum(templateVtemp(1:k,:));
+            templateV(i,:)=sum(templateV_temp(1:k,:));
         end
 
 %         templateV=templateV_approx+0.5*(templateV-templateV_approx);

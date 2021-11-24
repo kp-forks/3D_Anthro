@@ -39,10 +39,7 @@ clf
 % disp(' ');
 % disp('<starting ICP algorithm>');
 % disp('Remeshing and simplification target Mesh');
-
-
 [cutoff, ~] = ICP_definecutoff( templateV, templateF );
-
 
 [Indices_edgesS] = ICP_detectedges(templateV, templateF);
 [Indices_edgesT] = ICP_detectedges(targetV, targetF);
@@ -70,19 +67,18 @@ else
     [~, templateV, ~] = ICP_rigidICP(targetV, templateV, 0, Indices_edgesT, Indices_edgesS);
 end
 
+%plot of the meshes
 if figureOn == 1
-    %plot of the meshes
-    figure(99)
-        h = trisurf(templateF, templateV(:, 1), templateV(:, 2), templateV(:, 3), 0.3, 'Edgecolor', 'none');
-        hold on
-        light
-        lighting phong;
-        set(gca, 'visible', 'off')
-        set(gcf, 'Color', [1 1 1])
-        view(2)
-        set(gca, 'DataAspectRatio', [1 1 1], 'PlotBoxAspectRatio', [1 1 1]);
-        tttt = trisurf(targetF, targetV(:, 1), targetV(:, 2), targetV(:, 3), 'Facecolor', 'm', 'Edgecolor', 'none');
-        alpha(0.6)
+    h = trisurf(templateF, templateV(:, 1), templateV(:, 2), templateV(:, 3), 0.3, 'Edgecolor', 'none');
+    hold on
+    light
+    lighting phong;
+    set(gca, 'visible', 'off')
+    set(gcf, 'Color', [1 1 1])
+    view(2)
+    set(gca, 'DataAspectRatio', [1 1 1], 'PlotBoxAspectRatio', [1 1 1]);
+    tttt = trisurf(targetF, targetV(:, 1), targetV(:, 2), targetV(:, 3), 'Facecolor', 'm', 'Edgecolor', 'none');
+    alpha(0.6)
 end
 
 [p] = size(templateV, 1);
@@ -168,11 +164,10 @@ end
 
 % local deformation
 % disp('Local optimization');
-arraymap = repmat(cell(1), p, 1);
+% arraymap = repmat(cell(1), p, 1);
 kk = 12 + iterations;
 
 if figureOn == 1
-    figure(99)
     delete(tttt)
     tttt = trisurf(targetF, targetV(:, 1), targetV(:, 2), targetV(:, 3), 'Facecolor', 'm', 'Edgecolor', 'none');
     drawnow;
@@ -262,7 +257,6 @@ for ddd = 1:iterations
 
     % toc
     if figureOn == 1
-        figure(99)
         delete(h)
         h = trisurf(templateF, templateV(:, 1), templateV(:, 2), templateV(:, 3), 'FaceColor', 'y', 'Edgecolor', 'none');   
         drawnow;
