@@ -1,5 +1,13 @@
-function data = Anthro3D_3DRotation_Rotate(data, rMatrix)
+function data = Anthro3D_3DRotation_Rotate(data, rMatrix, rotationCenter)
+    if nargin < 3
+        rotationCenter = [0, 0, 0];
+    end
+
     data_copy = data;
-    data(:, 1) = rMatrix(1, 1)*data_copy(:, 1) + rMatrix(1, 2)*data_copy(:, 2) + rMatrix(1, 3)*data_copy(:, 3);
-    data(:, 2) = rMatrix(2, 1)*data_copy(:, 1) + rMatrix(2, 2)*data_copy(:, 2) + rMatrix(2, 3)*data_copy(:, 3);
-    data(:, 3) = rMatrix(3, 1)*data_copy(:, 1) + rMatrix(3, 2)*data_copy(:, 2) + rMatrix(3, 3)*data_copy(:, 3);
+    for j = 1:3
+        data_copy(:, j) = data_copy(:, j) - rotationCenter(j);
+    end
+    for j = 1:3
+        data(:, j) = rMatrix(j, 1)*data_copy(:, 1) + rMatrix(j, 2)*data_copy(:, 2) + rMatrix(j, 3)*data_copy(:, 3);
+        data(:, j) = data(:, j) + rotationCenter(j);
+    end

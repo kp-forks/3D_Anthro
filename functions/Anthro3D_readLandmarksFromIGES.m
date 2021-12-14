@@ -24,6 +24,14 @@ function LMs = Anthro3D_readLandmarksFromIGES(filename)
                     if isnan(str2double(tmp{4}))
                         tmp = fgets(fid);
                         tmp = strsplit(tmp, {',', ';'});
+                        for j = 1:length(tmp{1})
+                            if isnan(str2double(tmp{1}(j))) && ...
+                               ~strcmp(tmp{1}(j), '-') && ...
+                               ~strcmp(tmp{1}(j), '.')
+                                tmp{1} = tmp{1}(1:j-1);
+                                break;
+                            end
+                        end
                         LMs(cnt, 3) = str2double(tmp{1});
                         cnt = cnt + 1;
                         flag = 1;
