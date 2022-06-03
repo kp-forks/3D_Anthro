@@ -1,4 +1,4 @@
-function RotationMatrix = Anthro3D_3DRotation_RotationMatrix(RotationAngle, Axis)
+function RotationMatrix = Anthro3D_3DRotation_RotationMatrix(RotationAngle, rotationAxis)
 % creates a rotation matrix such that [rotationMatrix] * [x]
 % operates on [x] by rotating [x] around the origin rotationAngle (radians) around line
 % connecting the origin to the point "Axis"
@@ -15,6 +15,16 @@ function RotationMatrix = Anthro3D_3DRotation_RotationMatrix(RotationAngle, Axis
 % Rtest = rotationmat3D(pi/4,[0 0 1])
 %
 % by Bileschi 2009
+
+if strcmp(rotationAxis, 'X') || strcmp(rotationAxis, 'x')
+    Axis = [1,0,0];
+elseif strcmp(rotationAxis, 'Y') || strcmp(rotationAxis, 'y')
+    Axis = [0,1,0];
+elseif strcmp(rotationAxis, 'Z') || strcmp(rotationAxis, 'z')
+    Axis = [0,0,1];
+else
+    Axis = rotationAxis;
+end
 
 if nargin == 1
    if(length(rotX) == 3)

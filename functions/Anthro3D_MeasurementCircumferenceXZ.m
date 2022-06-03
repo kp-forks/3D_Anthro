@@ -1,4 +1,4 @@
-function [circumference, convdata] = Anthro3D_MeasurementCircumferencXZ(V, H, upperMargin, lowerMargin)
+function [circumference, convdata] = Anthro3D_MeasurementCircumferenceXZ(V, H, upperMargin, lowerMargin)
     V(V(:, 2) > H + upperMargin, :) = [];
     V(V(:, 2) < H - lowerMargin, :) = [];
 
