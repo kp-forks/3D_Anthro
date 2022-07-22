@@ -1,6 +1,6 @@
 function R = Anthro3D_3DRotation(P1, P2, rotationAxis, alignTo, rotationDirection)
     if nargin < 5
-        rotationDirection = '';
+        rotationDirection = '-';
     end
 
     if strcmp(rotationAxis, 'X') || strcmp(rotationAxis, 'x')

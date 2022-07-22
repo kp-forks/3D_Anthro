@@ -8,5 +8,5 @@
 
 subdirs = split(genpath('functions'),';');
 addpath(strjoin(subdirs(~contains(subdirs,'.git')),';'));
-disp('Functions for 3D Anthropometry & DHM successfully loaded');
+disp('Functions for 3D Anthropometry & DHM is successfully loaded');
 clear subdirs
